@@ -1,0 +1,23 @@
+---
+title: "Compostat 2024 Demo 2"
+author: "Adam Bartonicek"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#| fig-width: 9.5
+#| fig-height: 9.5
+
+library(plotscaper)
+
+create_schema(ggplot2::diamonds) |> 
+  add_scatterplot(c("carat", "price")) |>
+  add_barplot(c("color")) |>
+  render()
+
+```
