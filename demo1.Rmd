@@ -1,0 +1,28 @@
+---
+title: "Compstat 2024 Demo 1"
+author: "Adam Bartonicek"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#| fig-width: 9.5
+#| fig-height: 9.5
+
+imdb <- read.csv("imdb1000.csv")
+dplyr::glimpse(imdb)
+
+library(plotscaper)
+
+create_schema(imdb) |> 
+  add_scatterplot(c("runtime", "votes"), list(queries = c("title"))) |>
+  add_barplot(c("director")) |>
+  add_histogram(c("runtime")) |>
+  add_fluctplot(c("genre1", "genre2")) |>
+  render()
+
+```
